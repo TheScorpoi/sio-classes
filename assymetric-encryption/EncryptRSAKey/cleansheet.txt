@@ -1,0 +1,9 @@
+Can you explain the reason for what you observed in this exercise?
+
+(Running the encryptRSA, saving in two different files)
+We can see that by saving in two different files the content will be different while using the same key
+
+A secure RSA encryption is implemented with an appropriate padding scheme, which includes some randomness. See PKCS#1 or OAEP for more details.
+The RSA encryption encrypts message padded with '0's and and a string of random bit. In the process, the random string is "hidden" in the ciphertext by cryptographic hashing and XORing. 
+On decryption, the RSA decryption recovers the random string from the ciphertext and use it to recover message. 
+This is why you get different result with openssl rsautl for the same text message.
